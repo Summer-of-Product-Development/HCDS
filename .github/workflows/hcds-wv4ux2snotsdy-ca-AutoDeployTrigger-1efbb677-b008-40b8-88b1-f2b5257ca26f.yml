@@ -1,4 +1,4 @@
-name: Trigger auto deployment for sidhcds-xck5onkrdtz-ca
+name: Trigger auto deployment for hcds-wv4ux2snotsdy-ca
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - '**'
-      - '.github/workflows/sidhcds-xck5onkrdtz-ca-AutoDeployTrigger-1efbb677-b008-40b8-88b1-f2b5257ca26f.yml'
+      - '.github/workflows/hcds-wv4ux2snotsdy-ca-AutoDeployTrigger-1efbb677-b008-40b8-88b1-f2b5257ca26f.yml'
   workflow_dispatch:
 
 jobs:
@@ -23,18 +23,18 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets.hcdswv4ux2snotsdyca_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.hcdswv4ux2snotsdyca_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.hcdswv4ux2snotsdyca_AZURE_SUBSCRIPTION_ID }}
 
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: .
           dockerfilePath: .devcontainer/Dockerfile
-          registryUrl: sidhcdsxck5onkrdtzderegistry.azurecr.io
-          registryUsername: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_REGISTRY_PASSWORD }}
-          containerAppName: sidhcds-xck5onkrdtz-ca
-          resourceGroup: SidHcds-rg
-          imageToBuild: sidhcdsxck5onkrdtzderegistry.azurecr.io/sidhcds-xck5onkrdtz-ca:${{ github.sha }}
+          registryUrl: hcdswv4ux2snotsdyregistry.azurecr.io
+          registryUsername: ${{ secrets.hcdswv4ux2snotsdyca_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.hcdswv4ux2snotsdyca_REGISTRY_PASSWORD }}
+          containerAppName: hcds-wv4ux2snotsdy-ca
+          resourceGroup: HCDS-rg
+          imageToBuild: hcdswv4ux2snotsdyregistry.azurecr.io/hcds-wv4ux2snotsdy-ca:${{ github.sha }}
